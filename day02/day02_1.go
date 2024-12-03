@@ -1020,7 +1020,7 @@ func Day02_1() {
 
 	count := 0
 
-	for _, data := range strings.Split(real_input, "\n") {
+	for _, data := range strings.Split(test_input, "\n") {
 		is_safe := true
 		data_arr := strings.Split(data, " ")
 
