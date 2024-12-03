@@ -14,7 +14,7 @@ func Day01_1() {
 
 	total := 0
 
-	data := utils.GetData(1, utils.Test)
+	data := utils.GetData(1, utils.Real)
 	for _, e := range strings.Split(data, "\n") {
 		chars := strings.Split(e, " ")
 

@@ -7,7 +7,7 @@ import (
 )
 
 func Day03_1() {
-	stack := utils.GetData(3, utils.Test)
+	stack := utils.GetData(3, utils.Real)
 
 	first_i := -1
 	last_i := -1

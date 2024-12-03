@@ -35,6 +35,13 @@ func GetData(day int, dataType DataType) string {
 	if dataType {
 		return test_data[day]
 	}
+
+	filepath := fmt.Sprintf("./day%02d/input.txt", day)
+	if _, err := os.Stat(filepath); err == nil {
+		dat, _ := os.ReadFile(filepath)
+		return string(dat)[:len(dat)-1]
+	}
+
 	requestURL := fmt.Sprintf("https://adventofcode.com/2024/day/%d/input", day)
 	req, _ := http.NewRequest(http.MethodGet, requestURL, nil)
 
@@ -47,6 +54,8 @@ func GetData(day int, dataType DataType) string {
 
 	res, _ := client.Do(req)
 	body, _ := io.ReadAll(res.Body)
+
+	os.WriteFile(filepath, body, os.ModePerm)
 
 	return string(body)[:len(body)-1]
 }

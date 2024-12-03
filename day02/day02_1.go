@@ -12,7 +12,7 @@ func Day02_1() {
 
 	count := 0
 
-	for _, data := range strings.Split(utils.GetData(2, utils.Test), "\n") {
+	for _, data := range strings.Split(utils.GetData(2, utils.Real), "\n") {
 		is_safe := true
 		data_arr := strings.Split(data, " ")
 

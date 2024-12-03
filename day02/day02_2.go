@@ -11,7 +11,7 @@ import (
 func Day02_2() {
 
 	var arr [][]int
-	for _, data := range strings.Split(utils.GetData(2, utils.Test), "\n") {
+	for _, data := range strings.Split(utils.GetData(2, utils.Real), "\n") {
 		data_arr := strings.Split(data, " ")
 
 		int_arr := make([]int, len(data_arr))

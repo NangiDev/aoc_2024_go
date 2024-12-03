@@ -12,7 +12,7 @@ func Day01_2() {
 
 	var dict = make(map[int]int)
 
-	for _, e := range strings.Split(utils.GetData(1, utils.Test), "\n") {
+	for _, e := range strings.Split(utils.GetData(1, utils.Real), "\n") {
 		chars := strings.Split(e, " ")
 
 		leftNum, _ := strconv.Atoi(chars[0])
