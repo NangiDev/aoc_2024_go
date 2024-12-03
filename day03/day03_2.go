@@ -1,15 +1,13 @@
 package day03
 
 import (
-	"fmt"
+	"AoC-2024/utils"
 	"strconv"
 	"strings"
 )
 
-var test_input_2 = "xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))"
-
 func Day03_2() {
-	stack := test_input_2
+	stack := utils.GetData(3, utils.Test)
 	first_i := -1
 	last_i := -1
 	count := 0
@@ -49,5 +47,5 @@ func Day03_2() {
 		}
 	}
 
-	fmt.Println(count)
+	println(count)
 }

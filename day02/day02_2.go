@@ -1,7 +1,7 @@
 package day02
 
 import (
-	"fmt"
+	"AoC-2024/utils"
 	"math"
 	"slices"
 	"strconv"
@@ -11,7 +11,7 @@ import (
 func Day02_2() {
 
 	var arr [][]int
-	for _, data := range strings.Split(real_input, "\n") {
+	for _, data := range strings.Split(utils.GetData(2, utils.Test), "\n") {
 		data_arr := strings.Split(data, " ")
 
 		int_arr := make([]int, len(data_arr))
@@ -46,7 +46,7 @@ func Day02_2() {
 		}
 	}
 
-	fmt.Println(count)
+	println(count)
 }
 
 func isOrdered(intArr []int) bool {
