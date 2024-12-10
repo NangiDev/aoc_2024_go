@@ -53,6 +53,7 @@ func Day06_1() {
 		tile = getValid(guard, board)
 	}
 
+	utils.AssertEqual(4665, count)
 	println(count)
 }
 

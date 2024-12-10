@@ -108,3 +108,12 @@ func GetData(day int, dataType DataType) string {
 
 	return string(body)[:len(body)-1]
 }
+
+func AssertEqual[T comparable](expected T, actual T) {
+	if expected != actual {
+		err := fmt.Errorf("expected (%+v) is not equal to actual (%+v)", expected, actual)
+		if err != nil {
+			panic(err)
+		}
+	}
+}

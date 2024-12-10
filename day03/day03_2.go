@@ -47,5 +47,6 @@ func Day03_2() {
 		}
 	}
 
+	utils.AssertEqual(74361272, count)
 	println(count)
 }

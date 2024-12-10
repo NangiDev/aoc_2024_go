@@ -12,7 +12,7 @@ func Day01_1() {
 	var left []int
 	var right []int
 
-	total := 0
+	count := 0
 
 	data := utils.GetData(1, utils.Real)
 	for _, e := range strings.Split(data, "\n") {
@@ -29,8 +29,9 @@ func Day01_1() {
 
 	for i, l := range left {
 		r := right[i]
-		total += int(math.Abs((float64)(l - r)))
+		count += int(math.Abs((float64)(l - r)))
 	}
 
-	println(total)
+	utils.AssertEqual(2086478, count)
+	println(count)
 }

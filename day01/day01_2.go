@@ -31,10 +31,11 @@ func Day01_2() {
 		dict[l] = count
 	}
 
-	total := 0
+	count := 0
 	for _, v := range left {
-		total += v * dict[v]
+		count += v * dict[v]
 	}
 
-	println(total)
+	utils.AssertEqual(24941624, count)
+	println(count)
 }

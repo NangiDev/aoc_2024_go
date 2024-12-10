@@ -17,6 +17,10 @@ func Day06_2() {
 	var count int32 = 0
 	walk(&start, &board, &count)
 
+	// for _, e := range board {
+	// 	fmt.Println(e)
+	// }
+
 	println(count)
 }
 
@@ -51,10 +55,13 @@ func testLoop(start Pos, dir Pos, flow map[Pos][]Pos, board [][]string, count *i
 
 		// Check if should turn
 		nextTile := getValid(next, board)
-		if nextTile == nil {
-			break
-		} else if *nextTile == "#" {
+		for nextTile != nil && *nextTile == "#" {
 			dir = directions[dir]
+			next = Pos{
+				start.x + dir.x,
+				start.y + dir.y,
+			}
+			nextTile = getValid(next, board)
 		}
 
 		flow[start] = append(flow[start], dir)
@@ -75,6 +82,7 @@ func walk(start *Pos, board *[][]string, count *int32) {
 	flow := make(map[Pos][]Pos)
 
 	for tile != nil {
+		// *tile = "x"
 		if slices.Contains(flow[*start], dir) {
 			break
 		}
@@ -87,29 +95,32 @@ func walk(start *Pos, board *[][]string, count *int32) {
 
 		// Check if should turn
 		nextTile := getValid(next, *board)
-		if nextTile == nil {
-			break
-		} else if *nextTile == "#" {
+		for nextTile != nil && *nextTile == "#" {
 			dir = directions[dir]
-		} else {
-			// Copy Flow
-			newFlow := make(map[Pos][]Pos, len(flow))
-			for key, value := range flow {
-				copiedSlice := make([]Pos, len(value))
-				copy(copiedSlice, value)
-				newFlow[key] = copiedSlice
+			next = Pos{
+				start.x + dir.x,
+				start.y + dir.y,
 			}
-
-			// Copy board
-			newBoard := make([][]string, len(*board))
-			for i := range *board {
-				newBoard[i] = make([]string, len((*board)[i]))
-				copy(newBoard[i], (*board)[i])
-			}
-
-			wg.Add(1)
-			go testLoop(*start, dir, newFlow, newBoard, count, &wg)
+			nextTile = getValid(next, *board)
 		}
+
+		// Copy Flow
+		newFlow := make(map[Pos][]Pos, len(flow))
+		for key, value := range flow {
+			copiedSlice := make([]Pos, len(value))
+			copy(copiedSlice, value)
+			newFlow[key] = copiedSlice
+		}
+
+		// Copy board
+		newBoard := make([][]string, len(*board))
+		for i := range *board {
+			newBoard[i] = make([]string, len((*board)[i]))
+			copy(newBoard[i], (*board)[i])
+		}
+
+		wg.Add(1)
+		go testLoop(*start, dir, newFlow, newBoard, count, &wg)
 
 		flow[*start] = append(flow[*start], dir)
 

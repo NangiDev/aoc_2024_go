@@ -44,7 +44,7 @@ func Day05_1() {
 		updates = append(updates, spl_upd_int)
 	}
 
-	result := 0
+	count := 0
 	for _, spl_upd := range updates {
 		valid := true
 		for i := 0; i < len(spl_upd)-1; i++ {
@@ -59,9 +59,10 @@ func Day05_1() {
 		if valid {
 			mid_idx := len(spl_upd) / 2
 			mid_val := spl_upd[mid_idx]
-			result += mid_val
+			count += mid_val
 		}
 	}
 
-	println(result)
+	utils.AssertEqual(6034, count)
+	println(count)
 }

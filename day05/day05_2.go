@@ -45,7 +45,7 @@ func Day05_2() {
 		updates = append(updates, spl_upd_int)
 	}
 
-	result := 0
+	count := 0
 	fixed_seq := [][]int{}
 	for _, spl_upd := range updates {
 		fixed := false
@@ -71,8 +71,9 @@ func Day05_2() {
 	for _, i := range fixed_seq {
 		mid_idx := len(i) / 2
 		mid_val := i[mid_idx]
-		result += mid_val
+		count += mid_val
 	}
 
-	println(result)
+	utils.AssertEqual(6305, count)
+	println(count)
 }
