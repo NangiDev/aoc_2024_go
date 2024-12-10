@@ -33,8 +33,8 @@ func Day06_1() {
 	}
 
 	count := 0
-	isValid, tile := getValid(guard, board)
-	for isValid && tile != nil {
+	tile := getValid(guard, board)
+	for tile != nil {
 		if *tile == "." || *tile == "^" {
 			*tile = "X"
 			count++
@@ -44,27 +44,27 @@ func Day06_1() {
 			guard.x + dir.x,
 			guard.y + dir.y,
 		}
-		_, tile = getValid(d, board)
+		tile = getValid(d, board)
 		if tile != nil && *tile == "#" {
 			dir = directions[dir]
 		}
 		guard.x += dir.x
 		guard.y += dir.y
-		isValid, tile = getValid(guard, board)
+		tile = getValid(guard, board)
 	}
 
 	println(count)
 }
 
-func getValid(pos Pos, board [][]string) (bool, *string) {
+func getValid(pos Pos, board [][]string) *string {
 	width := len(board[0])
 	height := len(board)
 
 	// IN BOUNDS
 	if (pos.x >= 0 && pos.x < width) && (pos.y >= 0 && pos.y < height) {
-		return true, &board[pos.y][pos.x]
+		return &board[pos.y][pos.x]
 	}
 
 	// OUT OF BOUNDS
-	return false, nil
+	return nil
 }
