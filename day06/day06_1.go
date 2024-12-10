@@ -57,14 +57,9 @@ func Day06_1() {
 }
 
 func getValid(pos Pos, board [][]string) *string {
-	width := len(board[0])
-	height := len(board)
-
-	// IN BOUNDS
-	if (pos.x >= 0 && pos.x < width) && (pos.y >= 0 && pos.y < height) {
-		return &board[pos.y][pos.x]
+	// Check boundaries
+	if pos.x < 0 || pos.y < 0 || pos.y >= len(board) || pos.x >= len(board[pos.y]) {
+		return nil
 	}
-
-	// OUT OF BOUNDS
-	return nil
+	return &board[pos.y][pos.x]
 }

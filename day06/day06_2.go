@@ -4,6 +4,8 @@ import (
 	"AoC-2024/utils"
 	"slices"
 	"strings"
+	"sync"
+	"sync/atomic"
 )
 
 func Day06_2() {
@@ -12,17 +14,17 @@ func Day06_2() {
 	board := [][]string{}
 	initialize(&start, &board, &input)
 
-	count := 0
+	var count int32 = 0
 	walk(&start, &board, &count)
-
-	// for _, e := range board {
-	// 	fmt.Println(e)
-	// }
 
 	println(count)
 }
 
-func testLoop(start Pos, dir Pos, flow map[Pos][]Pos, board [][]string, count *int) {
+const maxSteps = 100000
+
+func testLoop(start Pos, dir Pos, flow map[Pos][]Pos, board [][]string, count *int32, wg *sync.WaitGroup) {
+	defer wg.Done()
+
 	next := Pos{
 		start.x + dir.x,
 		start.y + dir.y,
@@ -34,9 +36,10 @@ func testLoop(start Pos, dir Pos, flow map[Pos][]Pos, board [][]string, count *i
 	}
 
 	tile := getValid(start, board)
+	step := 0
 	for tile != nil {
-		if slices.Contains(flow[start], dir) {
-			*count++
+		if slices.Contains(flow[start], dir) || step >= maxSteps {
+			atomic.AddInt32(count, 1)
 			break
 		}
 
@@ -60,10 +63,13 @@ func testLoop(start Pos, dir Pos, flow map[Pos][]Pos, board [][]string, count *i
 		start.x += dir.x
 		start.y += dir.y
 		tile = getValid(start, board)
+
+		step++
 	}
 }
 
-func walk(start *Pos, board *[][]string, count *int) {
+func walk(start *Pos, board *[][]string, count *int32) {
+	var wg sync.WaitGroup
 	dir := Pos{0, -1}
 	tile := getValid(*start, *board)
 	flow := make(map[Pos][]Pos)
@@ -101,7 +107,8 @@ func walk(start *Pos, board *[][]string, count *int) {
 				copy(newBoard[i], (*board)[i])
 			}
 
-			testLoop(*start, dir, newFlow, newBoard, count)
+			wg.Add(1)
+			go testLoop(*start, dir, newFlow, newBoard, count, &wg)
 		}
 
 		flow[*start] = append(flow[*start], dir)
@@ -111,6 +118,8 @@ func walk(start *Pos, board *[][]string, count *int) {
 		start.y += dir.y
 		tile = getValid(*start, *board)
 	}
+
+	wg.Wait()
 }
 
 func initialize(start *Pos, board *[][]string, input *[]string) {
