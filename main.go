@@ -1,9 +1,5 @@
 package main
 
-import (
-	"AoC-2024/day06"
-)
-
 func main() {
 	// print("Day 01_1: ")
 	// day01.Day01_1()
@@ -30,8 +26,33 @@ func main() {
 	// print("Day 05_2: ")
 	// day05.Day05_2()
 
-	print("Day 06_1: ")
-	day06.Day06_1()
-	print("Day 06_2: ")
-	day06.Day06_2()
+	// print("Day 06_1: ")
+	// day06.Day06_1()
+	// print("Day 06_2: ")
+	// day06.Day06_2()
+
+	// print("Day 07_1: ")
+	// day07.Day07_1()
+	// print("Day 07_2: ")
+	// day07.Day07_2()
+
+	// print("Day 08_1: ")
+	// day08.Day08_1()
+	// print("Day 08_2: ")
+	// day08.Day08_2()
+
+	// print("Day 09_1: ")
+	// day09.Day09_1()
+	// print("Day 09_2: ")
+	// day09.Day09_2()
+
+	// print("Day 10_1: ")
+	// day10.Day10_1()
+	// print("Day 10_2: ")
+	// day10.Day10_2()
+
+	// print("Day 11_1: ")
+	// day11.Day11_1()
+	// print("Day 11_2: ")
+	// day11.Day11_2()
 }

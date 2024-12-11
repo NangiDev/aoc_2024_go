@@ -62,7 +62,7 @@ func walk(start *Pos, dir Pos, board [][]string) ([]Pos, int32) {
 }
 
 func Day06_2() {
-	input := strings.Split(utils.GetData(6, utils.Real), "\n")
+	input := strings.Split(utils.GetData(6, utils.Test), "\n")
 	start := Pos{0, 0}
 	board := [][]string{}
 	initialize(&start, &board, &input)
