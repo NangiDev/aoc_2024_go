@@ -1,6 +1,6 @@
 package main
 
-import "AoC-2024/day07"
+import "AoC-2024/day08"
 
 func main() {
 	// print("Day 01_1: ")
@@ -33,15 +33,15 @@ func main() {
 	// print("Day 06_2: ")
 	// day06.Day06_2()
 
-	print("Day 07_1: ")
-	day07.Day07_1()
-	print("Day 07_2: ")
-	day07.Day07_2()
+	// print("Day 07_1: ")
+	// day07.Day07_1()
+	// print("Day 07_2: ")
+	// day07.Day07_2()
 
-	// print("Day 08_1: ")
-	// day08.Day08_1()
-	// print("Day 08_2: ")
-	// day08.Day08_2()
+	print("Day 08_1: ")
+	day08.Day08_1()
+	print("Day 08_2: ")
+	day08.Day08_2()
 
 	// print("Day 09_1: ")
 	// day09.Day09_1()
